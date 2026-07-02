@@ -1,0 +1,12 @@
+{
+  "name": "tira3000",
+  "version": "1.0.0",
+  "scripts": {
+    "postinstall": "cd server && npm install",
+    "start": "cd server && node index.js",
+    "build": "echo build done"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
