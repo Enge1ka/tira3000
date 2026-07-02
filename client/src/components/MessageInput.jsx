@@ -102,10 +102,13 @@ export default function MessageInput({ onSend, onImageSend, limitReached, noPart
 
       <div className="flex items-end gap-3">
         <button
-          onClick={() => fileRef.current?.click()}
+          onClick={async () => {
+            try { fileRef.current?.click(); }
+            catch { alert('Image uploads not available yet'); }
+          }}
           disabled={sendDisabled}
           className="text-zinc-500 hover:text-zinc-300 transition-colors disabled:opacity-30 pb-2 flex-shrink-0"
-          title="Send image"
+          title="Send image (requires Cloudinary setup)"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <rect x="3" y="3" width="18" height="18" rx="2"/>

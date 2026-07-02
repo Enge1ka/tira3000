@@ -69,6 +69,9 @@ exports.sendMessage = (req, res) => {
 };
 
 exports.uploadImage = async (req, res) => {
+  if (!process.env.CLOUDINARY_CLOUD_NAME)
+    return res.status(503).json({ error: 'Image uploads not configured yet' });
+
   const senderId = req.user.id;
 
   const used = getTodayCount(senderId);
@@ -85,7 +88,7 @@ exports.uploadImage = async (req, res) => {
   try {
     const uploadResult = await new Promise((resolve, reject) => {
       const stream = cloudinary.uploader.upload_stream(
-        { folder: 'tira', resource_type: 'image' },
+        { folder: 'tira3000', resource_type: 'image' },
         (err, result) => (err ? reject(err) : resolve(result))
       );
       stream.end(req.file.buffer);
